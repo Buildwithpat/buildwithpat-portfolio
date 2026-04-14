@@ -119,10 +119,6 @@ html, body {
 /* Hide default cursor on the whole app */
 /* In globals.css */
 
-* {
-  cursor: none !important;
-}
-
 /* This is the magic line that stops the "Jumping" error */
 #cursor-container {
   pointer-events: none !important;
@@ -141,14 +137,53 @@ button, a {
 
 /* Only hide the default cursor on Desktop (devices with a mouse) */
 /* Only hide default cursor on desktop */
+/* 1. Reset any global forced cursor hidden state */
+/* Pehle jo '*' wala cursor none tha, use hata do ya isse replace karo */
+
+/* 2. Hide default cursor ONLY on Desktop and NOT on KBar */
+/* 1. Hide default cursor ONLY on desktop and ONLY if KBar is NOT visible */
 @media (hover: hover) and (pointer: fine) {
-  * {
+  /* Targeted selector to ensure it doesn't touch KBar once it's in the DOM */
+  html:not(:has([data-kbar-portal])) * {
     cursor: none !important;
   }
 }
 
-/* Force the toggle button area to be clickable */
-button, a {
+/* 2. Command Palette Fixes (The Glue) */
+[data-kbar-portal] {
+  z-index: 999999 !important;
+  cursor: auto !important; /* Restore default arrow for the overlay */
+}
+
+/* 3. Force Focus & Cursor inside the Search Bar */
+[data-kbar-portal] input {
+  cursor: text !important;
   pointer-events: auto !important;
-  z-index: 120 !important;
+  user-select: text !important;
+  z-index: 1000000 !important;
+}
+
+/* Ensure results are also clickable/selectable */
+[data-kbar-portal] [role="listbox"],
+[data-kbar-portal] [role="option"] {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* 4. Custom Cursor visibility logic */
+#cursor-container {
+  pointer-events: none !important;
+  z-index: 999998; 
+}
+
+/* Kill custom cursor as soon as the portal exists */
+body:has([data-kbar-portal]) #cursor-container {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 5. Essential Clickable Overrides */
+button, a, input, select, textarea {
+  pointer-events: auto !important;
 }
