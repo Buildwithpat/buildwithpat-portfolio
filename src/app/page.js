@@ -90,7 +90,7 @@ export default function Home() {
 
         {/* 2. MAIN BOLD TITLE (With Opacity Differentiator) */}
         <div className="max-w-5xl">
-          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-black tracking-tighter text-white leading-[0.9] mb-8">
+          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-black tracking-tighter text-white leading-[1.1] mb-8">
             Hey, I'm <br />
             <span className="text-white/40">Aakash</span> Pathak
           </h1>

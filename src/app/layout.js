@@ -8,13 +8,16 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth">
       <body className="antialiased bg-black text-white font-sans selection:bg-white selection:text-black overflow-x-hidden">
         <CustomCursor />
-        {/* --- 1. THE HEADER (Branding & Resume) --- */}
-        <header className="fixed top-0 left-0 w-full z-[60] px-8 h-20 flex items-center justify-between pointer-events-none">
-          <div className="flex items-center gap-3 pointer-events-auto">
-            <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
-              Aakash Pathak /
+
+        {/* --- 1. THE HEADER (Optimized for Mobile) --- */}
+        <header className="fixed top-0 left-0 w-full z-[1002] h-20 flex items-center justify-between pointer-events-none px-5 md:px-8">
+          <div className="flex flex-col md:flex-row md:items-center gap-0.5 md:gap-3 pointer-events-auto">
+            <span className="font-mono text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest leading-none">
+              {/* Shows 'A. Pathak' on mobile, 'Aakash Pathak' on desktop */}
+              <span className="md:hidden">A. Pathak /</span>
+              <span className="hidden md:inline">Aakash Pathak /</span>
             </span>
-            <span className="text-lg font-bold tracking-tight text-white">
+            <span className="text-base md:text-lg font-bold tracking-tight text-white leading-none">
               BuildWithPat
             </span>
           </div>
@@ -26,14 +29,13 @@ export default function RootLayout({ children }) {
                 "_blank",
               )
             }
-            className="pointer-events-auto px-6 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-zinc-200 transition-all shadow-lg"
+            className="pointer-events-auto px-5 py-1.5 md:px-6 md:py-2 bg-white text-black text-[9px] md:text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-zinc-200 transition-all shadow-lg leading-none"
           >
             Resume
           </button>
         </header>
 
         {/* --- 2. MAIN CONTENT --- */}
-        {/* We removed the old sidebar and stars from here to avoid conflicts */}
         <main className="relative z-10 w-full min-h-screen">{children}</main>
       </body>
     </html>

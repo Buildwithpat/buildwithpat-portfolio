@@ -9,7 +9,7 @@ export default function CodeWindow() {
   const [progress, setProgress] = useState(0);
 
   const tabs = ["Portfolio.tsx", "Tailwind.config.js", "Animations.css"];
-  const switchInterval = 2500; // Faster 2.5s cycle as requested
+  const switchInterval = 2500;
 
   useEffect(() => {
     let timer;
@@ -71,7 +71,7 @@ module.exports = {
       colors: {
         black: "#000000",
         zinc: { 950: "#09090b" },
-        amber: { 500: "#f59e0b" } // Primary Accent
+        amber: { 500: "#f59e0b" }
       },
       backgroundImage: {
         'blueprint': 'linear-gradient(#ffffff05 1px, transparent 1px)',
@@ -105,7 +105,7 @@ module.exports = {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* 1. Tab Bar */}
+      {/* 1. Tab Bar - UNTOUCHED */}
       <div className="flex items-center bg-[#0D0D0D] border-b border-white/10 px-4 pt-2">
         <div className="flex gap-1.5 mr-6">
           <div className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]" />
@@ -131,7 +131,6 @@ module.exports = {
             />
             <span className="opacity-70">{tab}</span>
 
-            {/* PROGRESS LINE: Specific to the active tab button only */}
             {activeTab === tab && (
               <div
                 className="absolute bottom-0 left-0 h-[2px] bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)] transition-all duration-100 ease-linear"
@@ -141,21 +140,26 @@ module.exports = {
           </button>
         ))}
       </div>
-
-      {/* 2. Code Display Area */}
+      {/* 2. Code Display Area - UNTOUCHED HEIGHT */}
+      
       <div className="p-4 text-[13px] leading-relaxed overflow-x-auto h-[450px]">
         <SyntaxHighlighter
           language={activeTab.endsWith(".css") ? "css" : "javascript"}
           style={vscDarkPlus}
-          customStyle={{ background: "transparent", padding: "10px" }}
+          customStyle={{
+            background: "transparent",
+            padding: "10px",
+            fontSize: "inherit", // Ensures it respects your text-[13px]
+          }}
           showLineNumbers={true}
+          wrapLines={true} // Crucial: Prevents code from pushing the container width
           lineNumberStyle={{ color: "#333", minWidth: "2.5em" }}
         >
           {codeSnippets[activeTab]}
         </SyntaxHighlighter>
       </div>
-
-      {/* 3. Footer */}
+      
+      {/* 3. Footer - UNTOUCHED */}
       <div className="px-6 py-3 border-t border-white/10 bg-[#0D0D0D] flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div

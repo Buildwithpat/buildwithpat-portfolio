@@ -73,8 +73,9 @@ export default function TechVault() {
         </div>
 
         {/* 3. BENTO GRID (Ensuring items-start is set) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column (Scrolls normally) */}
+        {/* 3. BENTO GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column (The content that makes the page long) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <TechCategoryCard
               title="Frontend Ecosystem"
@@ -102,13 +103,16 @@ export default function TechVault() {
             />
           </div>
 
-          {/* Right Column (STAYING STICKY) */}
-          <div className="hidden lg:block lg:col-span-7 sticky top-32">
-            <CodeWindow />
+          {/* Right Column (The Sticky Wrapper) */}
+          <div className="hidden lg:block lg:col-span-7">
+            {/* This inner div is the secret sauce */}
+            <div className="sticky top-32 h-fit">
+              <CodeWindow />
+            </div>
           </div>
 
-          {/* Mobile Fallback (Not sticky) */}
-          <div className="block lg:hidden">
+          {/* Mobile Fallback */}
+          <div className="block lg:hidden mt-8">
             <CodeWindow />
           </div>
         </div>
