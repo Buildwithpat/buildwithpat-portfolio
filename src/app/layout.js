@@ -25,7 +25,8 @@ export default function RootLayout({ children }) {
             </div>
 
             {/* Command Menu Indicator (Desktop Only) */}
-            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg pointer-events-auto hover:bg-white/10 transition-colors mr-4 group">
+            {/* Command Menu Indicator (Desktop Only) */}
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg pointer-events-auto hover:bg-white/10 transition-colors group absolute left-1/2 -translate-x-1/2">
               <span className="text-[10px] font-mono text-zinc-400 group-hover:text-white transition-colors">
                 PRESS
               </span>
