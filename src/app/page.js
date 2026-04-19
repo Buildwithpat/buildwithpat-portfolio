@@ -2,7 +2,15 @@
 import React from "react";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
-import { Terminal, ExternalLink, Zap, ShieldAlert } from "lucide-react";
+import {
+  Terminal,
+  ExternalLink,
+  Zap,
+  ShieldAlert,
+  Briefcase,
+  FolderRoot,
+} from "lucide-react";
+
 import Tilt from "react-parallax-tilt";
 import { GravityStarsBackground } from "@/components/ui/gravity-stars";
 import TechVault from "@/components/TechVault";
@@ -11,7 +19,6 @@ import Education from "@/components/Education";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-
 
 export default function Home() {
 
@@ -157,16 +164,27 @@ export default function Home() {
         </div>
         <div className="max-w-7xl mx-auto">
           {/* Header Area */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.4em] mb-3 block">
-                [ Protocol 01 // Production_Inventory ]
-              </span>
-              <h2 className="text-4xl font-bold uppercase tracking-tight text-white">
-                System Matrix
-              </h2>
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
+            {/* Left Side: Icon + Text Container */}
+            <div className="flex items-center gap-6">
+              {/* 1. The Icon Box */}
+              <div className="p-3 rounded-xl bg-zinc-950 border border-white/10 text-white/70 shadow-[0_0_20px_rgba(255,255,255,0.05)] shrink-0">
+                <Briefcase size={24} strokeWidth={1.5} />
+              </div>
+
+              {/* 2. The Titles */}
+              <div>
+                <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.4em] mb-2 block">
+                  [ Protocol 01 // Production_Inventory ]
+                </span>
+                <h2 className="text-4xl font-bold uppercase tracking-tight text-white leading-none">
+                  System Matrix
+                </h2>
+              </div>
             </div>
-            <div className="font-mono text-[9px] text-zinc-700 uppercase tracking-widest leading-relaxed text-right">
+
+            {/* Right Side: Stats */}
+            <div className="font-mono text-[9px] text-zinc-700 uppercase tracking-widest leading-relaxed md:text-right">
               Active Instances: 02 <br />
               Total Systems Deployed: {projects.length}
             </div>
