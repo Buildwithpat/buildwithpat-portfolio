@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import {
   Terminal,
@@ -19,6 +20,7 @@ import Education from "@/components/Education";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
 
@@ -75,17 +77,19 @@ export default function Home() {
       <Navbar />
 
       <GravityStarsBackground
-        starsCount={120}
+        starsCount={80}
         starsSize={1.5}
         movementSpeed={0.3}
-        mouseInfluence={150} // <--- This controls the swirl radius
-        gravityStrength={100} // <--- This controls how fast they snap
-        starsInteraction={true}
-        starsInteractionType="merge"
+        mouseInfluence={150}
+        gravityStrength={100}
+        starsInteraction={false}
         className="fixed inset-0 z-0 pointer-events-none"
       />
-      <section
+      <motion.section
         id="hero"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
         className="relative z-1 min-h-screen flex flex-col items-center justify-center px-6 text-center"
       >
         {/* 1. @BuildWithPat Label (Centered above) */}
@@ -142,10 +146,13 @@ export default function Home() {
         </div>
 
         {/* 5. STATUS BAR (Fixed bottom) */}
-      </section>
+      </motion.section>
 
-      <About />
+      <ScrollReveal>
+        <About />
+      </ScrollReveal>
 
+      <ScrollReveal>
       <section
         id="matrix"
         className="relative z-10 w-full bg-black border-t border-white/5 py-32 px-6"
@@ -198,18 +205,31 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div id="tech-vault">
-        <TechVault />
-      </div>
-      <div id="experience">
-        <Experience />
-      </div>
-      <div id="education">
-        <Education />
-      </div>
-      <div id="footer-section">
-        <Footer />
-      </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={0.1}>
+        <div id="tech-vault">
+          <TechVault />
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={0.1}>
+        <div id="experience">
+          <Experience />
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={0.1}>
+        <div id="education">
+          <Education />
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={0.1}>
+        <div id="footer-section">
+          <Footer />
+        </div>
+      </ScrollReveal>
     </div>
   );
 }

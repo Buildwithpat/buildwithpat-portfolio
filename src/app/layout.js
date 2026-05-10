@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import "./globals.css";
+import { motion } from "framer-motion";
 import CustomCursor from "@/components/CustomCursor";
 import CommandPalette from "@/components/CommandPalette";
 
@@ -12,7 +13,12 @@ export default function RootLayout({ children }) {
           <CustomCursor />
 
           {/* --- 1. THE HEADER (Optimized for Mobile) --- */}
-          <header className="fixed top-0 left-0 w-full z-[1002] h-20 flex items-center justify-between pointer-events-none px-5 md:px-8">
+          <motion.header
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="fixed top-0 left-0 w-full z-[1002] h-20 flex items-center justify-between pointer-events-none px-5 md:px-8"
+          >
             <div className="flex flex-col md:flex-row md:items-center gap-0.5 md:gap-3 pointer-events-auto">
               <span className="font-mono text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest leading-none">
                 {/* Shows 'A. Pathak' on mobile, 'Aakash Pathak' on desktop */}
@@ -51,10 +57,17 @@ export default function RootLayout({ children }) {
             >
               Resume
             </button>
-          </header>
+          </motion.header>
 
           {/* --- 2. MAIN CONTENT --- */}
-          <main className="relative z-10 w-full min-h-screen">{children}</main>
+          <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative z-10 w-full min-h-screen"
+          >
+            {children}
+          </motion.main>
         </CommandPalette>
       </body>
     </html>

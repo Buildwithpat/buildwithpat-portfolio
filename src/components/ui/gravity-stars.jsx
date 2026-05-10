@@ -23,6 +23,7 @@ function GravityStarsBackground({
   const animRef = React.useRef(null);
   const starsRef = React.useRef([]);
   const mouseRef = React.useRef({ x: 0, y: 0 });
+  const colorCacheRef = React.useRef(null);
   const [dpr, setDpr] = React.useState(1);
   const [canvasSize, setCanvasSize] = React.useState({
     width: 800,
@@ -233,18 +234,21 @@ function GravityStarsBackground({
   const drawStars = React.useCallback(
     (ctx) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      const color = readColor();
+      if (!colorCacheRef.current) {
+        colorCacheRef.current = readColor();
+      }
+      const color = colorCacheRef.current;
+      ctx.shadowColor = color;
+      ctx.fillStyle = color;
       for (const p of starsRef.current) {
-        ctx.save();
-        ctx.shadowColor = color;
-        ctx.shadowBlur = glowIntensity * (p.glowMultiplier || 1) * 2;
         ctx.globalAlpha = p.opacity;
-        ctx.fillStyle = color;
+        ctx.shadowBlur = glowIntensity * (p.glowMultiplier || 1) * 2;
         ctx.beginPath();
         ctx.arc(p.x * dpr, p.y * dpr, p.size * dpr, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       }
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
     },
     [dpr, glowIntensity, readColor],
   );
