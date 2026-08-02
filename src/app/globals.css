@@ -4,186 +4,271 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
+/* ------------------------------------------------------------------ */
+/* Design tokens — bespoke dual-theme system, not a color inversion.   */
+/* ------------------------------------------------------------------ */
 
 :root {
-  /* Forced Dark Mode Colors */
-  --background: oklch(0 0 0); /* Pure Black */
-  --foreground: oklch(0.985 0 0); /* Pure White */
-  --card: oklch(0.1 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.1 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0 0 0);
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.2 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.6 0.2 30);
-  --border: oklch(1 0 0 / 15%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.985 0 0);
-  --radius: 0.5rem;
+  color-scheme: light;
+
+  /* Light theme — warm white, not neutral gray */
+  --surface-0: oklch(0.99 0.005 85);
+  --surface-1: oklch(0.972 0.008 80);
+  --surface-2: oklch(0.95 0.011 75);
+  --surface-3: oklch(0.92 0.013 72);
+  --surface-4: oklch(0.89 0.015 68);
+  --surface-5: oklch(0.85 0.017 65);
+
+  --ink-0: oklch(0.19 0.01 55);
+  --ink-1: oklch(0.32 0.01 55);
+  --ink-2: oklch(0.5 0.01 55);
+  --ink-3: oklch(0.64 0.01 55);
+
+  --line-subtle: oklch(0.19 0.01 55 / 8%);
+  --line-strong: oklch(0.19 0.01 55 / 16%);
+
+  --accent: oklch(0.64 0.15 65);
+  --accent-ink: oklch(0.99 0.01 90);
+  --accent-soft: oklch(0.64 0.15 65 / 12%);
+  --accent-line: oklch(0.64 0.15 65 / 30%);
+
+  --glow: transparent;
+  --shadow-1: 0 1px 2px oklch(0.19 0.01 55 / 7%);
+  --shadow-2: 0 16px 40px oklch(0.35 0.02 60 / 10%), 0 3px 10px oklch(0.35 0.02 60 / 8%);
+  --shadow-3: 0 40px 96px oklch(0.35 0.02 60 / 14%), 0 10px 28px oklch(0.35 0.02 60 / 10%);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Dark theme — pure black through soft charcoal, more elevation steps
+     so cards/panels read as lifted layers rather than flat black-on-black */
+  --surface-0: oklch(0 0 0);
+  --surface-1: oklch(0.095 0 0);
+  --surface-2: oklch(0.135 0 0);
+  --surface-3: oklch(0.175 0 0);
+  --surface-4: oklch(0.225 0 0);
+  --surface-5: oklch(0.27 0 0);
+
+  --ink-0: oklch(0.97 0 0);
+  --ink-1: oklch(0.87 0 0);
+  --ink-2: oklch(0.66 0 0);
+  --ink-3: oklch(0.46 0 0);
+
+  --line-subtle: oklch(1 0 0 / 8%);
+  --line-strong: oklch(1 0 0 / 16%);
+
+  --accent: oklch(0.78 0.15 70);
+  --accent-ink: oklch(0.14 0.01 55);
+  --accent-soft: oklch(0.78 0.15 70 / 14%);
+  --accent-line: oklch(0.78 0.15 70 / 35%);
+
+  --glow: oklch(0.78 0.15 70 / 18%);
+  --shadow-1: 0 1px 2px oklch(0 0 0 / 50%);
+  --shadow-2: 0 16px 40px oklch(0 0 0 / 55%), 0 4px 12px oklch(0 0 0 / 45%);
+  --shadow-3: 0 40px 96px oklch(0 0 0 / 65%), 0 12px 32px oklch(0 0 0 / 50%);
+}
+
+@theme inline {
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+  --color-surface-5: var(--surface-5);
+
+  --color-ink-0: var(--ink-0);
+  --color-ink-1: var(--ink-1);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+
+  --color-line-subtle: var(--line-subtle);
+  --color-line-strong: var(--line-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+
+  --color-background: var(--surface-0);
+  --color-foreground: var(--ink-0);
+  --color-border: var(--line-subtle);
+
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-instrument-serif);
+  --font-mono: var(--font-geist-mono);
+
+  /* Fluid, editorial type scale */
+  --text-display: clamp(3rem, 4.5vw + 1.5rem, 7.5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.25rem, 2.5vw + 1.25rem, 4rem);
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(1.75rem, 1.6vw + 1.1rem, 2.75rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.375rem, 0.8vw + 1.05rem, 1.875rem);
+  --text-h3--line-height: 1.2;
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.35;
+  --text-body-lg: 1.1875rem;
+  --text-body-lg--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.5;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.02em;
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-elevation-1: var(--shadow-1);
+  --shadow-elevation-2: var(--shadow-2);
+  --shadow-elevation-3: var(--shadow-3);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-line-subtle;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
-    /* Custom Scrollbar for SDE Aesthetic */
-    scrollbar-width: thin;
-    scrollbar-color: #333 #000;
+    @apply bg-surface-0 text-ink-0 antialiased;
+    font-family: var(--font-sans);
+    transition:
+      background-color 320ms ease,
+      color 320ms ease;
   }
-  
-  /* Selection styling for that premium feel */
+
   ::selection {
-    background-color: white;
-    color: black;
+    background-color: var(--accent);
+    color: var(--accent-ink);
   }
 }
 
-/* Fix for smooth canvas background */
-#starCanvas, canvas {
-  pointer-events: none;
-}
-
-::selection {
-  background-color: white;
-  color: black;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-thumb {
-  background: #222;
-}
-::-webkit-scrollbar-track {
-  background: black;
-}
-
-html, body {
+html,
+body {
   max-width: 100vw;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
 
-/* Hide default cursor on the whole app */
-/* In globals.css */
-
-/* This is the magic line that stops the "Jumping" error */
-#cursor-container {
-  pointer-events: none !important;
+/* Themed, unobtrusive scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-/* Ensure Navbar elements are ALWAYS clickable */
-.fixed.z-\[1000\], .fixed.z-\[999\] {
-  pointer-events: auto !important;
+canvas {
+  pointer-events: none;
 }
 
-/* Except for your actual buttons */
-button, a {
-  pointer-events: auto !important;
-  cursor: none !important;
+/* ------------------------------------------------------------------ */
+/* Ambient background — soft fixed glows + fine grain so the page      */
+/* reads as alive/layered rather than flat black or flat gray.         */
+/* ------------------------------------------------------------------ */
+
+.bg-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(60rem 40rem at 12% -8%, var(--accent-soft), transparent 60%),
+    radial-gradient(50rem 36rem at 100% 18%, oklch(0.55 0.08 250 / 10%), transparent 55%),
+    radial-gradient(46rem 40rem at 8% 92%, oklch(0.55 0.08 250 / 8%), transparent 55%);
 }
 
-/* Only hide the default cursor on Desktop (devices with a mouse) */
-/* Only hide default cursor on desktop */
-/* 1. Reset any global forced cursor hidden state */
-/* Pehle jo '*' wala cursor none tha, use hata do ya isse replace karo */
+.dark .bg-ambient {
+  background-image:
+    radial-gradient(60rem 40rem at 12% -8%, var(--accent-soft), transparent 62%),
+    radial-gradient(50rem 36rem at 100% 18%, oklch(0.4 0.06 250 / 16%), transparent 58%),
+    radial-gradient(46rem 40rem at 8% 92%, oklch(0.4 0.06 250 / 12%), transparent 58%);
+}
 
-/* 2. Hide default cursor ONLY on Desktop and NOT on KBar */
-/* 1. Hide default cursor ONLY on desktop and ONLY if KBar is NOT visible */
-@media (hover: hover) and (pointer: fine) {
-  /* Targeted selector to ensure it doesn't touch KBar once it's in the DOM */
-  html:not(:has([data-kbar-portal])) * {
-    cursor: none !important;
+.bg-ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------ */
+/* View Transitions — cinematic theme swap, anchored circular reveal   */
+/* ------------------------------------------------------------------ */
+
+@supports (view-transition-name: root) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
+    animation: theme-reveal 640ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 }
 
-/* 2. Command Palette Fixes (The Glue) */
-[data-kbar-portal] {
-  z-index: 999999 !important;
-  cursor: auto !important; /* Restore default arrow for the overlay */
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0% at var(--theme-toggle-x, 100%) var(--theme-toggle-y, 0%));
+  }
+  to {
+    clip-path: circle(150% at var(--theme-toggle-x, 100%) var(--theme-toggle-y, 0%));
+  }
 }
 
-/* 3. Force Focus & Cursor inside the Search Bar */
-[data-kbar-portal] input {
-  cursor: text !important;
-  pointer-events: auto !important;
-  user-select: text !important;
-  z-index: 1000000 !important;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
 
-/* Ensure results are also clickable/selectable */
-[data-kbar-portal] [role="listbox"],
-[data-kbar-portal] [role="option"] {
-  cursor: pointer !important;
-  pointer-events: auto !important;
-}
-
-/* 4. Custom Cursor visibility logic */
-#cursor-container {
-  pointer-events: none !important;
-  z-index: 999998; 
-}
-
-/* Kill custom cursor as soon as the portal exists */
-body:has([data-kbar-portal]) #cursor-container {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
-/* 5. Essential Clickable Overrides */
-button, a, input, select, textarea {
-  pointer-events: auto !important;
+/* Custom cursor: never touches touch devices */
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none;
+  }
 }
