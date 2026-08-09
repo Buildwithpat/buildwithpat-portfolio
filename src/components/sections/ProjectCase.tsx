@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Tilt from "react-parallax-tilt";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -9,7 +10,6 @@ import type { Project } from "@/content/projects";
 import { StatusChip } from "@/components/ui/status-chip";
 import { Reveal } from "@/components/ui/reveal";
 import { maskReveal, riseIn, scaleDepth } from "@/lib/motion";
-import { scrollToSection } from "@/lib/scroll";
 
 const SWATCHES = ["#e0a458", "#7c3aed", "#0ea5e9", "#f43f5e"];
 
@@ -181,6 +181,104 @@ function EidosLayout({ project }: { project: Project }) {
   );
 }
 
+/** Blotto — doodle-style gaming platform: playful tilt card with game-mode chips. */
+function BlottoLayout({ project }: { project: Project }) {
+  return (
+    <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
+      <Reveal variants={scaleDepth}>
+        <Tilt
+          tiltMaxAngleX={6}
+          tiltMaxAngleY={6}
+          glareEnable
+          glareMaxOpacity={0.14}
+          glareColor="#f2c48a"
+          className="rounded-xl"
+        >
+          <div className="relative overflow-hidden rounded-xl border-2 border-dashed border-accent-line bg-surface-1 p-3 shadow-[var(--shadow-elevation-2)]">
+            {project.screenshot && (
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                <Image
+                  src={project.screenshot}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  sizes="(min-width: 768px) 55vw, 90vw"
+                  className="object-cover"
+                />
+              </div>
+            )}
+            <div className="absolute top-5 left-5 flex gap-2">
+              <span className="rounded-full border border-line-subtle bg-surface-0/80 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-ink-2 backdrop-blur-md">
+                Single-player
+              </span>
+              <span className="rounded-full border border-accent-line bg-accent-soft px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-accent backdrop-blur-md">
+                Multiplayer
+              </span>
+            </div>
+          </div>
+        </Tilt>
+      </Reveal>
+      <Reveal variants={riseIn} className="flex flex-col gap-5">
+        <StatusChip label={project.statusLabel} tone="live" />
+        <h3 className="text-h2 font-medium tracking-tight text-ink-0">
+          {project.title}
+        </h3>
+        <p className="max-w-md text-body-lg text-ink-2">
+          {project.description}
+        </p>
+        <StackChips stack={project.stack} />
+        <Links project={project} />
+      </Reveal>
+    </div>
+  );
+}
+
+/** Shared layout for the archive-only entries — alternates image side per index. */
+function GenericLayout({
+  project,
+  imageOnRight = true,
+}: {
+  project: Project;
+  imageOnRight?: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+      <Reveal
+        variants={riseIn}
+        className={imageOnRight ? "order-2 flex flex-col gap-5 md:order-1" : "order-2 flex flex-col gap-5"}
+      >
+        <StatusChip label={project.statusLabel} tone="live" />
+        <h3 className="text-h2 font-medium tracking-tight text-ink-0">
+          {project.title}
+        </h3>
+        <p className="max-w-md text-body-lg text-ink-2">
+          {project.description}
+        </p>
+        <StackChips stack={project.stack} />
+        <Links project={project} />
+      </Reveal>
+      <Reveal
+        variants={maskReveal}
+        className={imageOnRight ? "order-1 md:order-2" : "order-1"}
+      >
+        <div className="group relative overflow-hidden rounded-xl border border-line-subtle bg-surface-1 p-3 shadow-[var(--shadow-elevation-1)] transition-shadow hover:shadow-[var(--shadow-elevation-2)]">
+          <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-accent/60 via-accent/10 to-transparent" />
+          {project.screenshot && (
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+              <Image
+                src={project.screenshot}
+                alt={`${project.title} screenshot`}
+                fill
+                sizes="(min-width: 768px) 50vw, 90vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              />
+            </div>
+          )}
+        </div>
+      </Reveal>
+    </div>
+  );
+}
+
 /** Zukre — no screenshot yet: abstract "Building…" motif that teases Currently Building. */
 function ZukreLayout({ project }: { project: Project }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -208,8 +306,8 @@ function ZukreLayout({ project }: { project: Project }) {
           {project.description}
         </p>
         <StackChips stack={project.stack} />
-        <button
-          onClick={() => scrollToSection("currently-building")}
+        <Link
+          href="/#currently-building"
           className="group mt-2 flex items-center gap-2 rounded-full border border-accent-line bg-accent-soft px-5 py-2.5 text-body-sm font-medium text-accent transition-all hover:-translate-y-0.5 hover:opacity-90"
         >
           <Hammer size={14} />
@@ -218,7 +316,7 @@ function ZukreLayout({ project }: { project: Project }) {
             size={14}
             className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
-        </button>
+        </Link>
       </Reveal>
     </div>
   );
@@ -228,10 +326,18 @@ export function ProjectCase({ project }: { project: Project }) {
   switch (project.slug) {
     case "denken-ai":
       return <DenkenLayout project={project} />;
+    case "blotto":
+      return <BlottoLayout project={project} />;
     case "kotoba":
       return <KotobaLayout project={project} />;
     case "eidos":
       return <EidosLayout project={project} />;
+    case "veyra":
+      return <GenericLayout project={project} imageOnRight />;
+    case "ai-complaint-copilot":
+      return <GenericLayout project={project} imageOnRight={false} />;
+    case "macziom-infra":
+      return <GenericLayout project={project} imageOnRight />;
     case "zukre":
       return <ZukreLayout project={project} />;
     default:

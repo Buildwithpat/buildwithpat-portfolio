@@ -16,6 +16,8 @@ export interface Project {
   screenshot?: string;
   liveUrl?: string;
   repoUrl?: string;
+  /** Shown in the homepage's top-3 Projects section. All others live only on /projects. */
+  featured?: boolean;
 }
 
 export const PROJECTS: Project[] = [
@@ -30,6 +32,69 @@ export const PROJECTS: Project[] = [
     logo: "/logos/denken.svg",
     screenshot: "/screenshots/Denken-AI.png",
     liveUrl: "https://denken-ai.vercel.app",
+    featured: true,
+  },
+  {
+    slug: "blotto",
+    title: "Blotto",
+    description:
+      "Blotto is a doodle-style gaming platform featuring multiple mini-games across both single-player and multiplayer modes, built to deliver quick, engaging and competitive gameplay experiences.",
+    status: "live",
+    statusLabel: "Live",
+    stack: ["Next.js", "Socket.io", "Canvas", "Vercel"],
+    logo: "/logos/blotto.svg",
+    screenshot: "/screenshots/blotto.png",
+    liveUrl: "https://theblotto.vercel.app",
+    featured: true,
+  },
+  {
+    slug: "eidos",
+    title: "Eidos",
+    description:
+      "Design-to-data pipeline. Extracting typography and color DNA from live web systems.",
+    status: "live",
+    statusLabel: "Live",
+    stack: ["OCR", "Tailwind", "Canvas", "AWS"],
+    logo: "/logos/eidos.svg",
+    screenshot: "/screenshots/eidos.png",
+    liveUrl: "https://bwp-eidos.vercel.app",
+    featured: true,
+  },
+  {
+    slug: "veyra",
+    title: "Veyra",
+    description:
+      "AI-powered textile marketplace designed to simplify supplier discovery, sourcing workflows and B2B interactions.",
+    status: "live",
+    statusLabel: "Live",
+    stack: ["Next.js", "Node.js", "PostgreSQL", "LLM"],
+    logo: "/logos/veyra.svg",
+    screenshot: "/screenshots/veyra.png",
+    liveUrl: "https://veyra-client.onrender.com/",
+  },
+  {
+    slug: "ai-complaint-copilot",
+    title: "AI Complaint Registration Copilot",
+    description:
+      "AI-assisted complaint filing system where users chat naturally and the system automatically fills complaint forms instead of requiring manual entry.",
+    status: "live",
+    statusLabel: "Live",
+    stack: ["Next.js", "LLM", "LangChain", "Vercel"],
+    logo: "/logos/aivoa.svg",
+    screenshot: "/screenshots/aivoa.png",
+    liveUrl: "https://aivoa-ai-complaint-copilot.vercel.app/",
+  },
+  {
+    slug: "macziom-infra",
+    title: "Macziom Infra",
+    description:
+      "Corporate website developed for an architecture and construction firm with a focus on premium presentation, responsiveness and lead generation.",
+    status: "live",
+    statusLabel: "Live",
+    stack: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
+    logo: "/logos/macziom.svg",
+    screenshot: "/screenshots/macziom.png",
+    liveUrl: "https://macziominfra.com/",
   },
   {
     slug: "kotoba",
@@ -44,18 +109,6 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://bwp-kotoba.vercel.app",
   },
   {
-    slug: "eidos",
-    title: "Eidos",
-    description:
-      "Design-to-data pipeline. Extracting typography and color DNA from live web systems.",
-    status: "live",
-    statusLabel: "Live",
-    stack: ["OCR", "Tailwind", "Canvas", "AWS"],
-    logo: "/logos/eidos.svg",
-    screenshot: "/screenshots/eidos.png",
-    liveUrl: "https://bwp-eidos.vercel.app",
-  },
-  {
     slug: "zukre",
     title: "Zukre",
     description:
@@ -66,6 +119,8 @@ export const PROJECTS: Project[] = [
     logo: "/logos/zukre.svg",
   },
 ];
+
+export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.featured);
 
 export const CURRENTLY_BUILDING = {
   project: PROJECTS.find((p) => p.slug === "zukre")!,
