@@ -18,7 +18,7 @@ export function Projects() {
         />
         <Link
           href="/projects"
-          className="group flex shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-5 py-2.5 text-body-sm font-medium text-ink-0 transition-all hover:-translate-y-0.5 hover:bg-surface-2 hover:shadow-[var(--shadow-elevation-1)]"
+          className="group flex shrink-0 items-center gap-1.5 rounded-full bg-ink-0 px-5 py-2.5 text-body-sm font-medium text-surface-0 shadow-[var(--shadow-elevation-1)] transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-[var(--shadow-elevation-2)]"
         >
           View All Projects
           <ArrowUpRight
