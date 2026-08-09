@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import { SECTIONS } from "@/content/site";
@@ -15,6 +16,9 @@ import { EASE_PREMIUM } from "@/lib/motion";
 export function Navbar() {
   const activeSectionId = useActiveSection();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  if (pathname !== "/") return null;
 
   return (
     <>
