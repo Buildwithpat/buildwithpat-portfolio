@@ -341,6 +341,6 @@ export function ProjectCase({ project }: { project: Project }) {
     case "zukre":
       return <ZukreLayout project={project} />;
     default:
-      return null;
+      return <GenericLayout project={project} imageOnRight />;
   }
 }

@@ -11,6 +11,20 @@ export interface ExperienceEntry {
 
 export const EXPERIENCE: ExperienceEntry[] = [
   {
+    role: "AI FullStack Intern",
+    company: "Kenfeat-Integrated",
+    location: "Remote",
+    period: "August 2026 — Present",
+    current: true,
+    summary:
+      "Building Hospitality-Now, a hospitality news platform, across the frontend and backend.",
+    stack: ["Next.js", "React", "TypeScript", "Node.js"],
+    bullets: [
+      "Building Hospitality-Now, a hospitality news platform, end-to-end across frontend and backend.",
+      "Implementing features using Next.js, React, TypeScript, and Node.js.",
+    ],
+  },
+  {
     role: "Frontend Developer Intern",
     company: "Macziom Architects & Constructions",
     location: "Pitampura, Delhi",
